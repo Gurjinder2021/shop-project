@@ -1,0 +1,135 @@
+/* -------------------------
+   Light Theme Overrides
+   ------------------------- */
+:root {
+  --bg: #f8f9fa;        /* page background */
+  --panel-bg: #ffffff;  /* panels, navbar, sidebar background */
+  --text: #212529;      /* main text color */
+  --muted: #6c757d;     /* muted text */
+  --accent: #0d6efd;    /* primary accent color */
+  --border: #e9ecef;    /* light border */
+  --hover-bg: rgba(13,110,253,0.05); /* hover highlight */
+}
+
+/* Global */
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* Navbar */
+.header .navbar {
+  background: var(--panel-bg) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.header .navbar .brand-text {
+  color: var(--text) !important;
+}
+.header .navbar .brand-text .text-primary {
+  color: var(--accent) !important;
+}
+
+/* Sidebar */
+#sidebar {
+  background: var(--panel-bg) !important;
+  color: var(--text) !important;
+  border-right: 1px solid var(--border) !important;
+}
+#sidebar .heading { color: var(--muted) !important; }
+#sidebar ul li a {
+  color: var(--text) !important;
+}
+#sidebar ul li a:hover,
+#sidebar ul li.active > a {
+  background: var(--hover-bg) !important;
+  color: var(--accent) !important;
+}
+
+/* Page content */
+.page-content {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+.page-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Footer */
+.footer {
+  background: var(--panel-bg) !important;
+  color: var(--muted) !important;
+  border-top: 1px solid var(--border);
+}
+
+/* Cards / panels */
+.card, .card-body, .block {
+  background: var(--panel-bg) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Forms */
+input, select, textarea {
+  background: #fff !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+}
+
+/* Right menu (Edit Profile, Logout) */
+.right-menu .nav-link,
+.right-menu .nav-link i {
+  color: var(--text) !important;
+}
+.right-menu .nav-link:hover {
+  color: var(--accent) !important;
+}
+
+/* Charts may need light backgrounds */
+canvas {
+  background: #fff !important;
+}
+.table-bordered th,
+.table-bordered td {
+    border: 2px solid #dee2e6 !important;
+}
+
+.sidebar-toggle i {
+    color: white !important;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center;
+}
+.custom-modal-content {
+  background: #fff; padding: 20px; border-radius: 5px; width: 300px;
+}
+.close { float: right; cursor: pointer; }
+
+.btn-edit {
+    background-color: #0d6dfd8e !important; /* Bootstrap blue */
+    border-color: #0d6dfd49 !important;
+    color: #fff !important;
+}
+.btn-edit:hover {
+    background-color: #0b5ed7 !important; /* darker blue */
+    border-color: #0a58ca !important;
+}
+
+.statistic-link {
+    text-decoration: none;  /* remove underline */
+    color: inherit;         /* inherit text color */
+    display: block;         /* make link act like a block */
+}
+.statistic-link:hover .statistic-block {
+    background: #f8f9fa;    /* optional hover effect */
+    cursor: pointer;
+}
