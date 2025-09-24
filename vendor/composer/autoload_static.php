@@ -224,9 +224,9 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
         ),
         'ZipStream\\' => 
         array (
@@ -660,6 +660,7 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
     );
 
     public static $classMap = array (
+        'App\\Exports\\ShopsExport' => __DIR__ . '/../..' . '/app/Exports/ShopsExport.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -671,11 +672,14 @@ class ComposerStaticInitc514d8f7b9fc5970bdd94287905ef584
         'App\\Http\\Controllers\\Auth\\RegisteredUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisteredUserController.php',
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\DailyCollectionController' => __DIR__ . '/../..' . '/app/Http/Controllers/DailyCollectionController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
+        'App\\Http\\Middleware\\UserMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/UserMiddleware.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
+        'App\\Models\\DailyCollection' => __DIR__ . '/../..' . '/app/Models/DailyCollection.php',
         'App\\Models\\Shop' => __DIR__ . '/../..' . '/app/Models/Shop.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

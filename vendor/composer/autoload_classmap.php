@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Exports\\ShopsExport' => $baseDir . '/app/Exports/ShopsExport.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -17,11 +18,14 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisteredUserController' => $baseDir . '/app/Http/Controllers/Auth/RegisteredUserController.php',
     'App\\Http\\Controllers\\Auth\\VerifyEmailController' => $baseDir . '/app/Http/Controllers/Auth/VerifyEmailController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\DailyCollectionController' => $baseDir . '/app/Http/Controllers/DailyCollectionController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Middleware\\AdminMiddleware' => $baseDir . '/app/Http/Middleware/AdminMiddleware.php',
+    'App\\Http\\Middleware\\UserMiddleware' => $baseDir . '/app/Http/Middleware/UserMiddleware.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Http\\Requests\\ProfileUpdateRequest' => $baseDir . '/app/Http/Requests/ProfileUpdateRequest.php',
+    'App\\Models\\DailyCollection' => $baseDir . '/app/Models/DailyCollection.php',
     'App\\Models\\Shop' => $baseDir . '/app/Models/Shop.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
