@@ -153,8 +153,8 @@ header.header .nav-link {
 footer.footer {
     background-color: rgba(0,0,0,0.05); /* light gray transparent */
     border-top: 1px solid rgba(0,0,0,0.1);
-   
-    
+
+
     box-shadow: 0 -2px 4px rgba(0,0,0,0.03);
 }
 
@@ -168,4 +168,27 @@ footer.footer a:hover {
 #sidebar {
     border-right: 2px solid rgba(0, 0, 0, 0.111) !important; /* slightly darker for visibility */
     box-sizing: border-box; /* ensure border is counted within width */
+}
+
+/* Modal content background */
+.modal-content {
+    background-color: #1c1c1c; /* dark gray or black */
+    color: #ffffff; /* default text color inside modal */
+}
+
+/* Labels inside modal */
+.modal-content .form-label {
+    color: #ffffff; /* make labels visible */
+}
+
+/* Inputs text color */
+.modal-content .form-control {
+    background-color: #2c2c2c; /* slightly lighter than modal bg */
+    color: #ffffff;
+    border-color: #444; /* optional: visible borders */
+}
+
+/* Placeholder text (if any) */
+.modal-content ::placeholder {
+    color: #aaa;
 }

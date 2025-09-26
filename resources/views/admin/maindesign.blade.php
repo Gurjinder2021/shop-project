@@ -68,7 +68,7 @@
         <!-- Sidebar Navigation-->
         <nav id="sidebar">
             <!-- Sidebar Header-->
-  
+
             <ul class="list-unstyled">
 
                 <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -91,13 +91,18 @@
 
                 <li class="{{ request()->routeIs('assign.shop.form') ? 'active' : '' }}">
                     <a href="{{ route('assign.shop.form') }}">
-                        <i class="fa-solid fa-store"></i> Shops
+                        <i class="fa-solid fa-store"></i>Assign Shops
                     </a>
                 </li>
 
                 <li class="{{ request()->routeIs('view.user.shops') ? 'active' : '' }}">
                     <a href="{{ route('view.user.shops') }}">
                         <i class="fa-solid fa-link"></i> User Mapping
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('user.collectionreport') ? 'active' : '' }}">
+                    <a href="{{ route('user.collectionreport') }}">
+                        <i class="fa-solid fa-link"></i> All Users report
                     </a>
                 </li>
             </ul>
@@ -126,10 +131,13 @@
     <script src="{{ asset('/vendor/popper.js/umd/popper.min.js') }}"></script>
     <script src="{{ asset('/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/vendor/jquery.cookie/jquery.cookie.js') }}"></script>
-    <script src="{{ asset('/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('/vendor/jquery-validation/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('/js/charts-home.js') }}"></script>
     <script src="{{ asset('/js/front.js') }}"></script>
+
+       <!--
+    <script src="{{ asset('/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('/js/charts-home.js') }}"></script>
+-->
 </body>
 
 </html>

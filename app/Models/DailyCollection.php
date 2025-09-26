@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class DailyCollection extends Model
 {
+    protected $casts = [
+        'date' => 'date',
+    ];
     protected $fillable = [
         'user_id', 'shop_id', 'date', 'till_time',
         'online_collection', 'offline_collection', 'total_collection',

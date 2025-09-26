@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ShopCollectionsExport;
 use App\Exports\ShopsExport;
+use App\Models\DailyCollection;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,7 +37,7 @@ class AdminController extends Controller
 
     public function view_users()
     {
-        $users = User::latest()->get(); // Get all users, latest first
+        $users = User::where('user_type', 'user')->latest()->get();
 
         return view('admin.all-users', compact('users'));
     }
@@ -82,7 +84,7 @@ class AdminController extends Controller
 
     public function assignShopForm()
     {
-        $users = User::all();
+        $users = User::where('user_type', 'user')->get();
 
         return view('admin.assign-shop', compact('users'));
     }
@@ -126,7 +128,7 @@ class AdminController extends Controller
 
     public function viewUserShops(Request $request)
     {
-        $users = User::all();
+        $users = User::where('user_type', 'user')->get();
 
         $selectedUserId = $request->query('user_id');
 
@@ -149,7 +151,7 @@ class AdminController extends Controller
 
         $shop->update($request->only(['shop_number', 'name']));
 
-        return back()->with('success', 'Shop updated.');
+        return back()->with('success', 'Updated successfully.');
     }
 
     public function deleteShop(Shop $shop)
@@ -164,5 +166,52 @@ class AdminController extends Controller
         $userId = $request->query('user_id');
 
         return Excel::download(new ShopsExport($userId), 'shops_export.xlsx');
+    }
+
+    public function exportShopCollections()
+    {
+        // Fetch all users of type 'user' with shops and collections
+        $users = User::where('user_type', 'user')->with(['shops.dailyCollections'])->get();
+
+        // Determine the date range from first to last collection in system
+        $firstCollection = DailyCollection::orderBy('date')->first();
+        $lastCollection = DailyCollection::orderBy('date', 'desc')->first();
+
+        $allDates = [];
+        if ($firstCollection && $lastCollection) {
+            $start = \Carbon\Carbon::parse($firstCollection->date);
+            $end = \Carbon\Carbon::parse($lastCollection->date);
+
+            for ($date = $start; $date->lte($end); $date->addDay()) {
+                $allDates[] = $date->copy();
+            }
+        }
+
+        // Export Excel
+        return Excel::download(new ShopCollectionsExport($users, $allDates), 'shop_collections.xlsx');
+    }
+
+    public function collectionReport()
+    {
+        $firstDate = DailyCollection::orderBy('date')->first()?->date ?? now();
+        $lastDate = now();
+
+        $allDates = [];
+        $current = \Carbon\Carbon::parse($firstDate);
+        $end = \Carbon\Carbon::parse($lastDate);
+
+        while ($current <= $end) {
+            $allDates[] = $current->copy();
+            $current->addDay();
+        }
+
+        // Fetch all users with shops and daily collections
+        $users = User::where('user_type', 'user')
+    ->with(['shops.dailyCollections' => function ($query) {
+        $query->orderBy('date', 'asc');
+    }])
+    ->get();
+
+        return view('admin.collection-report', compact('users', 'allDates'));
     }
 }

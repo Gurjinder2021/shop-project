@@ -41,7 +41,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/user-shops', [AdminController::class, 'viewUserShops'])->name('view.user.shops');
     Route::put('/shops/{shop}', [AdminController::class, 'updateShop'])->name('shops.update');
     Route::delete('/shops/{shop}', [AdminController::class, 'deleteShop'])->name('shops.delete');
+    Route::get('/user-shops/allcollection', [AdminController::class, 'collectionReport'])->name('user.collectionreport');
+
     Route::get('/user-shops/export', [AdminController::class, 'exportUserShops'])->name('user.shops.export');
+    Route::get('/collections/export', [AdminController::class, 'exportShopCollections'])->name('admin.collections.export');
 });
 
 // User routes
@@ -51,7 +54,9 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user/shops', [UserController::class, 'userShops'])->name('user.shops');
     Route::get('/user/shop-collection', [DailyCollectionController::class, 'create'])->name('daily.collection.create');
     Route::post('/user/shop-collection', [DailyCollectionController::class, 'store'])->name('daily.collection.store');
+    Route::put('/user/shop-collection/{id}', [DailyCollectionController::class, 'update'])->name('daily.collection.store1');
     Route::get('/user/collectionsreport', [UserController::class, 'shopCollections'])->name('user.shop.collections');
+    Route::put('/collections/{collection}', [DailyCollectionController::class, 'update'])->name('collections.update');
 });
 
 require __DIR__.'/auth.php';

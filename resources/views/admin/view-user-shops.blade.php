@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container mt-4">
+
+    <!-- Success/Error Messages -->
+       @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
     <h2>View Shops Assigned to a User</h2>
 
     <!-- User Filter Form -->
@@ -25,7 +31,7 @@
             <input type="hidden" name="user_id" value="{{ $selectedUserId }}">
         @endif
         <button type="submit" class="btn btn-sm btn-outline-primary">
-            📥 Download {{ $selectedUserId ? 'Filtered' : 'All' }} Shops
+            📥 Download {{ $selectedUserId ? 'Filtered' : '' }} Excel
         </button>
     </form>
 
@@ -111,5 +117,13 @@ function closeModal() {
     document.getElementById('editModal').style.display = 'none';
 }
 </script>
-
+<script>
+    setTimeout(() => {
+        let alert = document.querySelector('.alert');
+        if (alert) {
+            let bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        }
+    }, 2000);
+</script>
 @endsection
