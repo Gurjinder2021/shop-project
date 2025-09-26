@@ -21,7 +21,7 @@
             </select>
         </div>
 
-        <div id="collectionMessage" class="mb-3 text-primary fw-bold" style="font-size: 1.1rem;></div>
+        <div id="collectionMessage" class="mb-3 fw-bold" style="color: #007bff; font-size: 1.1rem;"></div>
 
         <div class="mb-3">
             <label class="form-label">Date</label>
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const formattedDate = date.toLocaleDateString('en-GB'); // dd/mm/yyyy
         const formattedTime = collection.till_time;
 
-        messageDiv.textContent = `Data already entered today as on ${formattedDate} at ${formattedTime}. Editing will update it.`;
+        messageDiv.textContent = `Data already entered today as on ${formattedDate} at ${formattedTime}. Again saving will update it.`;
         messageDiv.classList.add('mb-3 text-primary fw-bold'); // add warning color
 
         tillTime.value = collection.till_time;
