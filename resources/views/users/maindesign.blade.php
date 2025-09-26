@@ -100,11 +100,13 @@
         </nav>
         <!-- Sidebar Navigation end-->
         <div class="page-content">
-            <div class="page-header">
-                <div class="container-fluid">
-                    <h2 class="h5 no-margin-bottom">Dashboard</h2>
-                </div>
-            </div>
+       <div class="page-header">
+    <div class="container-fluid">
+        @if(Route::currentRouteName() == 'user.dashboard')
+            <h2 class="h5 no-margin-bottom">Dashboard</h2>
+        @endif
+    </div>
+</div>
             @yield('content')
             <footer class="footer">
                 <div class="footer__block block no-margin-bottom">

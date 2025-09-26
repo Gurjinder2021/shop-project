@@ -121,21 +121,17 @@
     @endforeach
 </div>
 @endsection
-
-
+@push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.collection-input').forEach(input => {
-        input.addEventListener('input', function() {
-            const modalBody = input.closest('.modal-body');
-            const online = parseFloat(modalBody.querySelector('input[name="online_collection"]').value) || 0;
-            const offline = parseFloat(modalBody.querySelector('input[name="offline_collection"]').value) || 0;
-            modalBody.querySelector('.total-collection').value = (online + offline).toFixed(2);
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.collection-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const modalBody = input.closest('.modal-body');
+                const online = parseFloat(modalBody.querySelector('input[name="online_collection"]').value) || 0;
+                const offline = parseFloat(modalBody.querySelector('input[name="offline_collection"]').value) || 0;
+                modalBody.querySelector('.total-collection').value = (online + offline).toFixed(2);
+            });
         });
     });
-});
 </script>
-
-
-<script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+@endpush
