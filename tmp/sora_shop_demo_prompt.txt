@@ -1,0 +1,13 @@
+Use case: product demo clip for the Shop Project admin dashboard
+Primary request: a short cinematic UI demo of a dark admin dashboard that manages users, shop/stall assignments, and collection reports
+Scene/background: clean studio backdrop with a floating desktop UI window, subtle depth and soft vignette
+Subject: the Shop Project admin interface with sidebar menu, stats cards, user list, mapping screen, and collection report table
+Action: UI panels slide and crossfade between Dashboard, Users, Assign Stall, User Mapping, and Collection Report views
+Camera: slow dolly-in with slight parallax; gentle tilt down during the final table view
+Lighting/mood: soft studio lighting, premium and focused
+Color palette: charcoal, slate, teal accents, white text, subtle amber highlights
+Style/format: crisp high-fidelity UI mockup, smooth motion graphics, no real people
+Timing/beats: 0-3s dashboard cards and sidebar; 3-6s user list with search; 6-9s assign stall form; 9-12s collection report table with highlighted rows
+Text (verbatim): "Dashboard" "All Users" "Assign Stall" "User Mapping" "Collection Report"
+Constraints: no real people, no real logos, no copyrighted characters or music
+Avoid: flicker, jitter, distorted text, warped UI elements

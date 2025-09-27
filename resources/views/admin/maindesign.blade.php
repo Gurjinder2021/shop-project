@@ -71,52 +71,70 @@
 
             <ul class="list-unstyled">
 
-                <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('admin.dashboard') }}">
-                        <i class="fa-solid fa-house"></i> Home
-                    </a>
-                </li>
+                @if (auth()->user()->user_type === 'admin')
+                    <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('admin.dashboard') }}">
+                            <i class="fa-solid fa-house"></i> Home
+                        </a>
+                    </li>
 
-                <li class="{{ request()->routeIs('add.user') ? 'active' : '' }}">
-                    <a href="{{ route('add.user') }}">
-                        <i class="fa-solid fa-user-plus"></i> Add User
-                    </a>
-                </li>
+                    <li class="{{ request()->routeIs('add.user') ? 'active' : '' }}">
+                        <a href="{{ route('add.user') }}">
+                            <i class="fa-solid fa-user-plus"></i> Add User
+                        </a>
+                    </li>
 
-                <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
-                    <a href="{{ route('users') }}">
-                        <i class="fa-solid fa-users"></i> All Users
-                    </a>
-                </li>
+                    <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
+                        <a href="{{ route('users') }}">
+                            <i class="fa-solid fa-users"></i> All Users
+                        </a>
+                    </li>
 
+<<<<<<< Updated upstream
                 <li class="{{ request()->routeIs('assign.shop.form') ? 'active' : '' }}">
                     <a href="{{ route('assign.shop.form') }}">
                         <i class="fa-solid fa-store"></i>Assign Shops
                     </a>
                 </li>
+=======
+                    <li class="{{ request()->routeIs('assign.shop.form') ? 'active' : '' }}">
+                        <a href="{{ route('assign.shop.form') }}">
+                            <i class="fa-solid fa-store"></i>Assign Stall
+                        </a>
+                    </li>
+>>>>>>> Stashed changes
 
-                <li class="{{ request()->routeIs('view.user.shops') ? 'active' : '' }}">
-                    <a href="{{ route('view.user.shops') }}">
-                        <i class="fa-solid fa-link"></i> User Mapping
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('user.collectionreport') ? 'active' : '' }}">
-                    <a href="{{ route('user.collectionreport') }}">
-                        <i class="fa-solid fa-link"></i> All Users report
-                    </a>
-                </li>
+                    <li class="{{ request()->routeIs('view.user.shops') ? 'active' : '' }}">
+                        <a href="{{ route('view.user.shops') }}">
+                            <i class="fa-solid fa-link"></i> User Mapping
+                        </a>
+                    </li>
+                    <li class="{{ request()->routeIs('user.collectionreport') ? 'active' : '' }}">
+                        <a href="{{ route('user.collectionreport') }}">
+                            <i class="fa-solid fa-link"></i> All Users report
+                        </a>
+                    </li>
+                @endif
+
+                @if (auth()->user()->user_type === 'dbadmin')
+                    <li class="{{ request()->routeIs('admin.database.*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.database.index') }}">
+                            <i class="fa-solid fa-database"></i> Database Admin
+                        </a>
+                    </li>
+                @endif
             </ul>
 
         </nav>
         <!-- Sidebar Navigation end-->
         <div class="page-content">
-<div class="page-header">
+<!--<div class="page-header">
     <div class="container-fluid">
-        @if(Route::currentRouteName() == 'admin.dashboard')
+          @if(Route::currentRouteName() == 'admin.dashboard')
             <h2 class="h5 no-margin-bottom">Dashboard</h2>
-        @endif
+        @endif 
     </div>
-</div>
+</div>-->
             @yield('content')
             <footer class="footer">
                 <div class="footer__block block no-margin-bottom">
