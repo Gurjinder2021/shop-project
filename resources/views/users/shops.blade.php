@@ -10,8 +10,8 @@
                 <thead >
                     <tr>
                         <th>Sr No.</th>
-                        <th>Shop No.</th>
-                        <th>Shop Name</th>
+                        <th>Stall No.</th>
+                        <th>Stall Name</th>
                     </tr>
                 </thead>
                 <tbody>

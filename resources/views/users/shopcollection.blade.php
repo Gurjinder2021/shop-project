@@ -10,17 +10,17 @@
         @foreach ($shopsWithCollections as $shop)
             <div class="card mt-4">
                 <div class="card-header">
-                    <strong>Shop #{{ $shop->shop_number }}</strong> - {{ $shop->name }}
+                    <strong>Stall #{{ $shop->shop_number }}</strong> - {{ $shop->name }}
                 </div>
                 <div class="card-body">
                     @if ($shop->dailyCollections->isEmpty())
-                        <p>No collections found for this shop.</p>
+                        <p>No collections found for this Stall.</p>
                     @else
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Shop No</th>
-                                    <th>Shop Name</th>
+                                    <th>Stall No</th>
+                                    <th>Stall Name</th>
                                     <th>Date</th>
                                     <th>Till Time</th>
                                     <th>Online Collection</th>
@@ -59,7 +59,7 @@
                                                     @method('PUT')
 
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Collection - Shop
+                                                        <h5 class="modal-title">Edit Collection - Stall
                                                             #{{ $shop->shop_number }}</h5>
 
                                                     </div>
@@ -67,14 +67,14 @@
                                                     <div class="modal-body">
                                                         <!-- Shop Number -->
                                                         <div class="mb-3">
-                                                            <label class="form-label">Shop Number</label>
+                                                            <label class="form-label">Stall Number</label>
                                                             <input type="text" class="form-control"
                                                                 value="{{ $shop->shop_number }}" readonly>
                                                         </div>
 
                                                         <!-- Shop Name -->
                                                         <div class="mb-3">
-                                                            <label class="form-label">Shop Name</label>
+                                                            <label class="form-label">Stall Name</label>
                                                             <input type="text" class="form-control"
                                                                 value="{{ $shop->name }}" readonly>
                                                         </div>

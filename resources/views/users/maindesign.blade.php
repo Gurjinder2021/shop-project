@@ -80,7 +80,7 @@
 
                 <li class="{{ request()->is('user/shops') ? 'active' : '' }}">
                     <a href="{{ route('user.shops') }}">
-                        <i class="fa-solid fa-store"></i> Shop List
+                        <i class="fa-solid fa-store"></i> Stall List
                     </a>
                 </li>
 

@@ -91,7 +91,7 @@
 
                 <li class="{{ request()->routeIs('assign.shop.form') ? 'active' : '' }}">
                     <a href="{{ route('assign.shop.form') }}">
-                        <i class="fa-solid fa-store"></i>Assign Shops
+                        <i class="fa-solid fa-store"></i>Assign Stall
                     </a>
                 </li>
 

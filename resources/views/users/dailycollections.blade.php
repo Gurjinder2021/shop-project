@@ -12,9 +12,9 @@
             <input type="hidden" name="collection_id" id="collectionId">
 
             <div class="mb-3">
-                <label class="form-label">Select Shop</label>
+                <label class="form-label">Select Stall</label>
                 <select name="shop_id" id="shopSelect" class="form-control" required>
-                    <option value="">-- Select Shop --</option>
+                    <option value="">-- Select Stall --</option>
                     @foreach ($shops as $shop)
                         <option value="{{ $shop->id }}">{{ $shop->shop_number }} - {{ $shop->name }}</option>
                     @endforeach

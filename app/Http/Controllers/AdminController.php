@@ -115,6 +115,21 @@ class AdminController extends Controller
             'shops.*.name' => 'required|string|max:255',
         ]);
 
+        // 1. Check for duplicates in request
+        $shopNumbers = collect($request->shops)->pluck('number');
+        if ($shopNumbers->count() !== $shopNumbers->unique()->count()) {
+            return redirect()->back()->withErrors(['shops' => 'Duplicate shop number found in request.']);
+        }
+
+        // 2. Check for duplicates in DB
+        $existing = Shop::whereIn('shop_number', $shopNumbers)->pluck('shop_number')->toArray();
+        if (!empty($existing)) {
+            return redirect()->back()->withErrors([
+                'shops' => 'Shop number '.implode(', ', $existing).' already in database.',
+            ]);
+        }
+
+        // 3. Insert only if everything is valid
         foreach ($request->shops as $shop) {
             Shop::create([
                 'user_id' => $request->user_id,
@@ -145,7 +160,7 @@ class AdminController extends Controller
     public function updateShop(Request $request, Shop $shop)
     {
         $request->validate([
-            'shop_number' => 'required|string|max:100',
+            'shop_number' => 'required|string|max:100|unique:shops,shop_number,'.$shop->id,
             'name' => 'required|string|max:255',
         ]);
 
