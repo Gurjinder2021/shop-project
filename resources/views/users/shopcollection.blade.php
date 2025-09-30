@@ -5,7 +5,7 @@
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-        <h4>Daily Collections for Your Shops</h4>
+        <h4>Daily Collections for Your Stall</h4>
 
         @foreach ($shopsWithCollections as $shop)
             <div class="card mt-4">
