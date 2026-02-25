@@ -2,6 +2,12 @@
 
 @section('content')
     @php
+        $userCount = (int) ($userCount ?? 0);
+        $mappedUsersCount = (int) ($mappedUsersCount ?? 0);
+        $totalShops = (int) ($totalShops ?? 0);
+        $shopEntryPercent = (float) ($shopEntryPercent ?? 0);
+
+        $shopEntryPercent = max(0, min(100, $shopEntryPercent));
         $mappedPercentage = $userCount > 0 ? round(($mappedUsersCount / $userCount) * 100, 1) : 0;
         $unmappedUsers = max($userCount - $mappedUsersCount, 0);
         $shopsWithEntry = (int) round(($shopEntryPercent / 100) * $totalShops);
