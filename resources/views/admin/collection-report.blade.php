@@ -10,11 +10,11 @@
 </a>
 
     @foreach($users as $user)
-        <h5 class="mt-4">{{ $user->name }}</h5>
+        <h5 class="mt-4">{{ ucwords($user->name) }}</h5>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Shop No and Name</th>
+                    <th>Stall No. and Name</th>
                     <th>Date</th>
                     <th>Online Collection</th>
                     <th>Offline Collection</th>

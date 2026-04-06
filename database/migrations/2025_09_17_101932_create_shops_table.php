@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // FK to users
+            $table->string('shop_number')->unique(); // Add shop_number with unique constraint
             $table->string('name');
             $table->string('address')->nullable();
             $table->timestamps();

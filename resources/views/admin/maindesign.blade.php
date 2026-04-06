@@ -90,11 +90,11 @@
                         </a>
                     </li>
 
-                    <li class="{{ request()->routeIs('assign.shop.form') ? 'active' : '' }}">
-                        <a href="{{ route('assign.shop.form') }}">
-                            <i class="fa-solid fa-store"></i>Assign Shops
-                        </a>
-                    </li>
+                <li class="{{ request()->routeIs('assign.shop.form') ? 'active' : '' }}">
+                    <a href="{{ route('assign.shop.form') }}">
+                        <i class="fa-solid fa-store"></i>Assign Stall
+                    </a>
+                </li>
 
                     <li class="{{ request()->routeIs('view.user.shops') ? 'active' : '' }}">
                         <a href="{{ route('view.user.shops') }}">

@@ -7,7 +7,16 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
+    {{-- Error Messages --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ route('assign.multiple.shops') }}" method="POST">
         @csrf
 
@@ -22,9 +31,9 @@
 
         <div id="shop-fields">
             <div class="shop-group border p-3 mt-3">
-                <h5>Shop #1</h5>
-                <input type="text" name="shops[0][number]" class="form-control mb-2" placeholder="Shop Number" required>
-                <input type="text" name="shops[0][name]" class="form-control" placeholder="Shop Name" required>
+                <h5>Stall Name and number</h5>
+                <input type="text" name="shops[0][number]" class="form-control mb-2" placeholder="Stall Number" required>
+                <input type="text" name="shops[0][name]" class="form-control" placeholder="Stall Name" required>
             </div>
         </div>
 

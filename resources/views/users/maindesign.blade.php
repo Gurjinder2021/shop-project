@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin </title>
+    <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -80,7 +80,7 @@
 
                 <li class="{{ request()->is('user/shops') ? 'active' : '' }}">
                     <a href="{{ route('user.shops') }}">
-                        <i class="fa-solid fa-store"></i> Shop List
+                        <i class="fa-solid fa-store"></i> Stall List
                     </a>
                 </li>
 
