@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DatabaseAdminController;
 use App\Http\Controllers\DailyCollectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -45,6 +46,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/user-shops/export', [AdminController::class, 'exportUserShops'])->name('user.shops.export');
     Route::get('/collections/export', [AdminController::class, 'exportShopCollections'])->name('admin.collections.export');
+
+});
+
+Route::middleware(['auth', 'dbadmin'])->group(function () {
+    Route::get('/database-admin', [DatabaseAdminController::class, 'index'])->name('admin.database.index');
+    Route::get('/database-admin/create-table', [DatabaseAdminController::class, 'createTableView'])->name('admin.database.create-table.view');
+    Route::post('/database-admin/create-table', [DatabaseAdminController::class, 'createTable'])->name('admin.database.create-table');
+    Route::delete('/database-admin/drop-table/{table}', [DatabaseAdminController::class, 'dropTable'])->name('admin.database.drop-table');
+    Route::post('/database-admin/{table}', [DatabaseAdminController::class, 'store'])->name('admin.database.store');
+    Route::put('/database-admin/{table}/{id}', [DatabaseAdminController::class, 'update'])->name('admin.database.update');
+    Route::delete('/database-admin/{table}/{id}', [DatabaseAdminController::class, 'destroy'])->name('admin.database.destroy');
 });
 
 // User routes

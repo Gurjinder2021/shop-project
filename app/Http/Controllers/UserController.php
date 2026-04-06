@@ -20,6 +20,10 @@ class UserController extends Controller
             return redirect()->route('user.dashboard');
         }
 
+        if ($user->user_type === 'dbadmin') {
+            return redirect()->route('admin.database.index');
+        }
+
         return redirect('/'); // fallback
     }
 
@@ -28,17 +32,17 @@ class UserController extends Controller
     {
         $today = now()->format('Y-m-d');
 
-        // Total users (except admin)
-        $userCount = User::where('user_type', '!=', 'admin')->count();
+        // Total active users for mapping stats (exclude admin and dbadmin)
+        $userCount = User::where('user_type', 'user')->count();
 
-        // Users mapped to at least one shop
-        $mappedUsersCount = User::where('user_type', '!=', 'admin')
+        // Active users mapped to at least one shop
+        $mappedUsersCount = User::where('user_type', 'user')
             ->whereHas('shops')
             ->count();
 
-        // Shops mapped to users
+        // Shops mapped to active users only
         $totalShops = Shop::whereHas('user', function ($q) {
-            $q->where('user_type', '!=', 'admin');
+            $q->where('user_type', 'user');
         })->count();
 
         // Shops having entry for today
