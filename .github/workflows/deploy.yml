@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /var/www/shop-projec
+            cd /var/www/shop-project
             git pull origin main
             composer install --no-dev --optimize-autoloader
             php artisan migrate --force
