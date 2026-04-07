@@ -10,16 +10,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH and Deploy
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SERVER_HOST }}
+          host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
+            set -e
+
             cd /var/www/shop-project
-            git pull origin main
+
+            echo "Backup .env..."
+            cp .env /tmp/env.backup || true
+
+            echo "Fix ownership..."
+            sudo chown -R ubuntu:www-data .
+
+            echo "Reset and pull latest code..."
+            git fetch origin
+            git reset --hard origin/main
+
+            echo "Restore .env..."
+            cp /tmp/env.backup .env || true
+
+            echo "Install dependencies..."
             composer install --no-dev --optimize-autoloader
+
+            echo "Fix Laravel permissions..."
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+
+            echo "Clear caches..."
+            php artisan config:clear
+            php artisan cache:clear
+
+            echo "Run migrations..."
             php artisan migrate --force
+
+            echo "Rebuild caches..."
             php artisan config:cache
             php artisan route:cache
+
+            echo "Restart PHP..."
+            sudo systemctl restart php8.2-fpm || true
+
+            echo "Deployment completed successfully"
