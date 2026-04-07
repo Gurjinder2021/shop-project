@@ -16,43 +16,38 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
           script: |
             set -e
 
             cd /var/www/shop-project
 
-            echo "Backup .env..."
-            cp .env /tmp/env.backup || true
-
-            echo "Fix ownership..."
+            echo "Fixing ownership..."
             sudo chown -R ubuntu:www-data .
 
             echo "Reset and pull latest code..."
-            git fetch origin
-            git reset --hard origin/main
+            git reset --hard
+            git pull origin main
 
-            echo "Restore .env..."
-            cp /tmp/env.backup .env || true
-
-            echo "Install dependencies..."
+            echo "Installing dependencies..."
             composer install --no-dev --optimize-autoloader
 
-            echo "Fix Laravel permissions..."
-            sudo chown -R www-data:www-data storage bootstrap/cache
-            sudo chmod -R 775 storage bootstrap/cache
+            echo "Running migrations..."
+            php artisan migrate --force
 
-            echo "Clear caches..."
+            echo "Clearing caches..."
             php artisan config:clear
             php artisan cache:clear
 
-            echo "Run migrations..."
-            php artisan migrate --force
-
-            echo "Rebuild caches..."
+            echo "Rebuilding caches..."
             php artisan config:cache
             php artisan route:cache
 
-            echo "Restart PHP..."
+            echo "Fixing Laravel permissions..."
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+
+            echo "Restarting PHP..."
             sudo systemctl restart php8.2-fpm || true
 
             echo "Deployment completed successfully"
