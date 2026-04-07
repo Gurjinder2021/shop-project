@@ -24,17 +24,27 @@ jobs:
             echo "Fixing permissions..."
             sudo chown -R ubuntu:www-data .
 
-            echo "Stashing local changes..."
-            git stash --include-untracked
-
-            echo "Pulling latest code..."
+            echo "Reset & Pull latest code..."
+            git reset --hard
             git pull origin main
-
-            echo "Restoring .env..."
-            git stash pop || true
 
             echo "Installing dependencies..."
             composer install --no-dev --optimize-autoloader
+
+            echo "Running migrations..."
+            php artisan migrate --force
+
+            echo "Clearing & caching..."
+            php artisan config:clear
+            php artisan cache:clear
+            php artisan config:cache
+            php artisan route:cache
+
+            echo "Fixing Laravel permissions..."
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+
+            echo "Deployment completed successfully"            composer install --no-dev --optimize-autoloader
 
             echo "Running migrations..."
             php artisan migrate --force
