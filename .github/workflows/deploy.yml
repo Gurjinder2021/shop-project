@@ -17,9 +17,30 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
+            set -e
+
             cd /var/www/shop-project
+
+            echo "Fixing permissions..."
+            sudo chown -R ubuntu:www-data .
+
+            echo "Pulling latest code..."
             git pull origin main
+
+            echo "Installing dependencies..."
             composer install --no-dev --optimize-autoloader
+
+            echo "Running migrations..."
             php artisan migrate --force
+
+            echo "Clearing & caching..."
+            php artisan config:clear
+            php artisan cache:clear
             php artisan config:cache
             php artisan route:cache
+
+            echo "Fixing Laravel permissions..."
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+
+            echo "Deployment completed successfully"
