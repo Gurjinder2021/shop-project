@@ -10,21 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH and Deploy
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
           script: |
             set -e
 
             cd /var/www/shop-project
 
-            echo "Fixing permissions..."
+            echo "Fixing ownership..."
             sudo chown -R ubuntu:www-data .
 
-            echo "Reset & Pull latest code..."
+            echo "Reset and pull latest code..."
             git reset --hard
             git pull origin main
 
@@ -34,9 +35,11 @@ jobs:
             echo "Running migrations..."
             php artisan migrate --force
 
-            echo "Clearing & caching..."
+            echo "Clearing caches..."
             php artisan config:clear
             php artisan cache:clear
+
+            echo "Rebuilding caches..."
             php artisan config:cache
             php artisan route:cache
 
@@ -44,19 +47,7 @@ jobs:
             sudo chown -R www-data:www-data storage bootstrap/cache
             sudo chmod -R 775 storage bootstrap/cache
 
-            echo "Deployment completed successfully"            composer install --no-dev --optimize-autoloader
-
-            echo "Running migrations..."
-            php artisan migrate --force
-
-            echo "Clearing & caching..."
-            php artisan config:clear
-            php artisan cache:clear
-            php artisan config:cache
-            php artisan route:cache
-
-            echo "Fixing Laravel permissions..."
-            sudo chown -R www-data:www-data storage bootstrap/cache
-            sudo chmod -R 775 storage bootstrap/cache
+            echo "Restarting PHP..."
+            sudo systemctl restart php8.2-fpm || true
 
             echo "Deployment completed successfully"
